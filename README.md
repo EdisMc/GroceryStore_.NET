@@ -1,1 +1,1 @@
-TSP_Project_2022_Supermarket
+Course project based on C#(.NET) : Grocery Store Management System.
