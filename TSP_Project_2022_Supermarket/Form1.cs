@@ -36,5 +36,46 @@ namespace TSP_Project_2022_Supermarket
         {
             Application.Exit();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Uname.Text = "";
+            password.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Uname.Text == "" || password.Text == "")
+            {
+                MessageBox.Show("Enter username and password!");
+            } 
+            else
+            {
+                if (RoleCb.SelectedIndex > -1)
+                {
+                    if (RoleCb.SelectedItem.ToString() == "ADMIN")
+                    {
+                        if (Uname.Text == "Admin" && password.Text == "Admin")
+                        {
+                            Product product = new Product();
+                            product.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter the correct Id and password!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("You are in the Seller section!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Select a role");
+                }
+            }
+        }
     }
 }
