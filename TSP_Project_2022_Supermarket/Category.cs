@@ -116,9 +116,9 @@ namespace TSP_Project_2022_Supermarket
 
         private void button10_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Product product = new Product();
             product.Show();
-            this.Hide();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -128,9 +128,21 @@ namespace TSP_Project_2022_Supermarket
 
         private void button9_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Seller seller = new Seller();
             seller.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
             this.Hide();
+            Form1 form = new Form1();
+            form.Show();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

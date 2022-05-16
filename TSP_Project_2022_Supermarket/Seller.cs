@@ -65,7 +65,7 @@ namespace TSP_Project_2022_Supermarket
             SName.Text = SellerDGV.SelectedRows[0].Cells[1].Value.ToString();
             SAge.Text = SellerDGV.SelectedRows[0].Cells[2].Value.ToString();
             SPhone.Text = SellerDGV.SelectedRows[0].Cells[3].Value.ToString();
-            SPassword.Text = SellerDGV.SelectedRows[0].Cells[3].Value.ToString();
+            SPassword.Text = SellerDGV.SelectedRows[0].Cells[4].Value.ToString();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -127,16 +127,23 @@ namespace TSP_Project_2022_Supermarket
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Product product = new Product();
             product.Show();
-            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Category category = new Category();
             category.Show();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
             this.Hide();
+            Form1 form = new Form1();
+            form.Show();
         }
     }
 }

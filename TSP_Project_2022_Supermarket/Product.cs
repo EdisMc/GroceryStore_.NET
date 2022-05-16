@@ -36,6 +36,8 @@ namespace TSP_Project_2022_Supermarket
             dt.Load(rdr);
             CatCb.ValueMember = "catName";
             CatCb.DataSource = dt;
+            comboBox2.ValueMember = "catName";
+            comboBox2.DataSource = dt;
             conn.Close();
         }
 
@@ -58,9 +60,10 @@ namespace TSP_Project_2022_Supermarket
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Category cat = new Category();
             cat.Show();
-            this.Hide();
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -72,6 +75,11 @@ namespace TSP_Project_2022_Supermarket
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Product added successfully!");
+                ProdId.Text = "";
+                ProdName.Text = "";
+                ProdQty.Text = "";
+                ProdPrice.Text = "";
+                CatCb.Text = "";
                 conn.Close();
                 showData();
             }
@@ -150,9 +158,44 @@ namespace TSP_Project_2022_Supermarket
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Seller seller = new Seller();
             seller.Show();
+            
+        }
+
+        private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            conn.Open();
+            string query = "select * from Product where ProdCat='" + comboBox2.SelectedValue.ToString() + "'";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+            SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+            var ds = new DataSet();
+            adapter.Fill(ds);
+            ProdDGV.DataSource = ds.Tables[0];
+            conn.Close();
+        }
+
+        private void CatCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
             this.Hide();
+            Form1 frm = new Form1();
+            frm.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            showData();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace TSP_Project_2022_Supermarket
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Selling());
+            Application.Run(new Splash());
         }
     }
 }

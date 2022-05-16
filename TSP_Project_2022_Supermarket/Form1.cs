@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace TSP_Project_2022_Supermarket
 {
@@ -16,6 +17,10 @@ namespace TSP_Project_2022_Supermarket
         {
             InitializeComponent();
         }
+
+        public static string sellerName = "";
+
+        SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\edy_d\OneDrive\Documents\grstoredb.mdf;Integrated Security=True;Connect Timeout=30");
 
         private void guna2CircleButton1_Click(object sender, EventArgs e)
         {
@@ -63,12 +68,33 @@ namespace TSP_Project_2022_Supermarket
                         }
                         else
                         {
-                            MessageBox.Show("Enter the correct Id and password!");
+                            MessageBox.Show("Enter the correct username and password!");
+                            Uname.Text = "";
+                            password.Text = "";
                         }
                     }
                     else
                     {
-                        MessageBox.Show("You are in the Seller section!");
+                       conn.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter("select count(8) from Seller where SellerName='" + Uname.Text + "' and SellerPass='" + password.Text + "'", conn);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        if (dt.Rows[0][0].ToString() == "1")
+                        {
+                            sellerName = Uname.Text;
+                            Selling selling = new Selling();
+                            selling.Show();
+                            this.Hide();
+                            conn.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect username and password!");
+                            Uname.Text = "";
+                            password.Text = "";
+                        }
+                        conn.Close();
                     }
                 }
                 else
